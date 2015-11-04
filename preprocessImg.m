@@ -1,7 +1,7 @@
 function [imgResult] = preprocessImg(img, neighborhoodSize)
 % Function for preprocessing an image by doing mean and dev normalization
 % followed by whitening the image
-
+    load('filters.mat');
     % convert into blocks for local mean and dev normalization
     patches = [];
     for row = 1:size(img,3)
