@@ -1,5 +1,5 @@
 # rgbd-convnet
-Masters' thesis implementation
+Masters' thesis implementation - files will be added soon
 
 The dataset being used here the UW rgb-d dataset and can be downloaded from here:
 http://rgbd-dataset.cs.washington.edu/dataset/rgbd-dataset/
