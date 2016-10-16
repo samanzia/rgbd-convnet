@@ -16,8 +16,6 @@ x = randperm(fileCount);
 trainLabel1 = trainLabel(x,1);
 trainData1 = trainData(x,:);
 trainData1 = sparse(trainData1);
-%trainData = trainData1(1:3000,:);
-%trainLabel = trainLabel1(1:3000,:);
 
 clear TrainRGBSplit1Features;
 
@@ -41,8 +39,6 @@ testLabel = TestRGBSplit2Labels;
 testData = reshape(TestRGBSplit2Features1,[],size(TestRGBSplit2Features1,4));
 %testData = TestRGBSplit1Features4;
 testData = testData';
-%testData = testData(1:1000,:);
-%testLabel = testLabel(1:1000,:);
 fileCount = size(testLabel,1);
 x = randperm(fileCount);
 testLabel = testLabel(x,1);
@@ -64,9 +60,6 @@ for x=1:size(c,2)
     model = train(trainLabel1, trainData1, ['-q -c ',num2str(2^(c(x)))]);
 	[predictedlabels,accuracy, prob]  = predict(trainLabel1,trainData1, model);
 	[predictedlabels,valacc1, prob]  = predict(testLabel,testData, model);
-%	[predictedlabels,valacc1, prob]  = predict(devLabel,devData, model);
-%	disp(valacc1);
-%	disp(accuracy);
 	disp(c(x));
    valacc = [valacc; valacc1];
 end

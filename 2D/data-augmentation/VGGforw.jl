@@ -34,43 +34,43 @@ end
 
 @knet function vgg_model(x0;weights=0)
 
-    x1 = cbf(x0; w = map(Float32,weights["w1_1"]), b = reshape(map(Float32,weights["b1_1"]) ,1,1,size(weights["b1_1"],1),1), out=64)
+    x1 = cbf(x0; w = map(Float32,weights[w1_1]), b = reshape(map(Float32,weights[“w1_1”]) ,1,1,size(weights[“w1_1”],1),1), out=64)
 
-	x2 = cbf(x1; w = map(Float32,weights["w1_2"]), b = reshape(map(Float32,weights["b1_2"]) ,1,1,size(weights["b1_2"],1),1), out=64)
+	x2 = cbf(x1; w = map(Float32,weights[“w1_2”]), b = reshape(map(Float32,weights[“w1_2”]) ,1,1,size(weights[“w1_2”],1),1), out=64)
 
 	x3 = pool(x2; window = 2)
 
-	x4 = cbf(x3; w = map(Float32,weights["w2_1"]), b = reshape(map(Float32,weights["b2_1"]) ,1,1,size(weights["b2_1"],1),1), out=128)
+	x4 = cbf(x3; w = map(Float32,weights[“w2_1”]), b = reshape(map(Float32,weights[“w2_1”]) ,1,1,size(weights[“w2_1”],1),1), out=128)
 
-	x5 = cbf(x4; w = map(Float32,weights["w2_2"]), b = reshape(map(Float32,weights["b2_2"]) ,1,1,size(weights["b2_2"],1),1), out=128)
+	x5 = cbf(x4; w = map(Float32,weights[“w2_2”]), b = reshape(map(Float32,weights[“w2_2”]) ,1,1,size(weights[“w2_2”],1),1), out=128)
 
 	x6 = pool(x5; window = 2)
 
-	x7 = cbf(x6; w = map(Float32,weights["w3_1"]), b = reshape(map(Float32,weights["b3_1"]) ,1,1,size(weights["b3_1"],1),1), out=256)
+	x7 = cbf(x6; w = map(Float32,weights[“w3_1”]), b = reshape(map(Float32,weights[“w3_1”]) ,1,1,size(weights[“w3_1”],1),1), out=256)
 
-	x8 = cbf(x7; w = map(Float32,weights["w3_2"]), b = reshape(map(Float32,weights["b3_2"]) ,1,1,size(weights["b3_2"],1),1), out=256)
+	x8 = cbf(x7; w = map(Float32,weights[“w3_2”]), b = reshape(map(Float32,weights[“w3_2”]) ,1,1,size(weights[“w3_2”],1),1), out=256)
 
-	x9 = cbf(x8; w = map(Float32,weights["w3_3"]), b = reshape(map(Float32,weights["b3_3"]) ,1,1,size(weights["b3_3"],1),1), out=256)
+	x9 = cbf(x8; w = map(Float32,weights[“w3_3”]), b = reshape(map(Float32,weights[“w3_3”]) ,1,1,size(weights[“w3_3”],1),1), out=256)
 
 	x10 = pool(x9; window = 2)
 
-	x11 = cbf(x10; w = map(Float32,weights["w4_1"]), b = reshape(map(Float32,weights["b4_1"]) ,1,1,size(weights["b4_1"],1),1), out=512)
+	x11 = cbf(x10; w = map(Float32,weights[“w4_1”]), b = reshape(map(Float32,weights[“w4_1”]) ,1,1,size(weights[“w4_1”],1),1), out=512)
 
-	x12 = cbf(x11; w = map(Float32,weights["w4_2"]), b = reshape(map(Float32,weights["b4_2"]) ,1,1,size(weights["b4_2"],1),1), out=512)
+	x12 = cbf(x11; w = map(Float32,weights[“w4_2”]), b = reshape(map(Float32,weights[“w4_2”]) ,1,1,size(weights[“w4_2”],1),1), out=512)
 
-	x13 = cbf(x12; w = map(Float32,weights["w4_3"]), b = reshape(map(Float32,weights["b4_3"]) ,1,1,size(weights["b4_3"],1),1), out=512)
+	x13 = cbf(x12; w = map(Float32,weights[“w4_3”]), b = reshape(map(Float32,weights[“w4_3”]) ,1,1,size(weights[“w4_3”],1),1), out=512)
 
 	x14 = pool(x13; window = 2)
 
-	x15 = cbf(x14;w = map(Float32,weights["w5_1"]), b = reshape(map(Float32,weights["b5_1"]) ,1,1,size(weights["b5_1"],1),1), out=512)
+	x15 = cbf(x14;w = map(Float32,weights[“w5_1”]), b = reshape(map(Float32,weights[“w5_1”]) ,1,1,size(weights[“w5_1”],1),1), out=512)
 
-	x16 = cbf(x15; w = map(Float32,weights["w5_2"]), b = reshape(map(Float32,weights["b5_2"]) ,1,1,size(weights["b5_2"],1),1), out=512)
+	x16 = cbf(x15; w = map(Float32,weights[“w5_2”]), b = reshape(map(Float32,weights[“w5_2”]) ,1,1,size(weights[“w5_2”],1),1), out=512)
 
-	x17 = cbf(x16; w = map(Float32,weights["w5_3"]), b = reshape(map(Float32,weights["b5_3"]) ,1,1,size(weights["b5_3"],1),1), out=512)
+	x17 = cbf(x16; w = map(Float32,weights[“w5_3”]), b = reshape(map(Float32,weights[“w5_3”]) ,1,1,size(weights[“w5_3”],1),1), out=512)
 
 	x18 = pool(x17; window = 2)	
 
-    return cbf(x18;w = map(Float32,weights["w6"]), b = reshape(map(Float32,weights["b6"]) ,1,1,size(weights["b6"],1),1), f=:relu, p=0)
+    return cbf(x18;w = map(Float32,weights[“w6”]), b = reshape(map(Float32,weights[“w6”]) ,1,1,size(weights[“w6”],1),1), f=:relu, p=0)
 
 	#x20 = cbf(x19; w= w77, b=b77, f=:relu, out=4096, p=0)
 	#return wbf(x20; out = 51, f=:soft)
@@ -120,7 +120,7 @@ function Knettest(args=ARGS)
 	#ydev = map(Float32,ydev)
 
 	
-	file = matread("vgg-verydeep-16.mat")
+	file = matread(“vgg-verydeep-16.mat")
 	
     
 	rxtrn = mean(xtrn[:,:,1,:]);
@@ -144,7 +144,7 @@ function Knettest(args=ARGS)
 	global dtrn = minibatch(xtrn, ytrn, nbatch)
     global dtst = minibatch(xtst, ytst, nbatch)
 	
-    global vgg = compile(:vgg_model; weights=file)
+    global vgg = compile(:vgg_model; weights=files)
     #tic()
 	dim = 1;fmaps = 4096;
 	xtrnsize =size(xtrn,4)

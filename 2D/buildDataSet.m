@@ -1,16 +1,15 @@
-path = ('/mnt/kufs/scratch/szia13/dataset/datasetsplits/split1/train/');
+path = ('/mnt/kufs/scratch/szia13/dataset/datasetsplits/split1/train/'); %the path where the whole dataset is
 subfolder = dir(path);
 
-dimPad1 = 224;
+dimPad1 = 224; %the resize dimension
 dimPad2 = 224;
 
 fileCounterTest = 1;
 fileCounterTrain = 1;
 label = 0;
-filterSize = 3;
 
-load splits.mat;
-foldnum = 2;
+load splits.mat; %this file defines the splits
+foldnum = 2; %split number
 
 for x = 3:size(subfolder,1)
     subfolderpath = strcat(path,subfolder(x).name);
