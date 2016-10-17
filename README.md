@@ -31,3 +31,5 @@ Run script3D.sh for getting the best performing 3D features
 Copy the features to the fusion folder
 
 Run scriptFusion.sh to get the best performance
+
+Read the script files for more comments.

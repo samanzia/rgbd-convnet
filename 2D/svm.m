@@ -1,15 +1,12 @@
 addpath('/mnt/kufs/scratch/szia13/liblinear-2.1/matlab/')
- 
-%load('DevRGBSplit2Features1.mat');
-%load('DevRGBSplit2Labels.mat');
-load('TrainRGBSplit2Features1.mat');
-load('TrainRGBSplit2Labels.mat');
-load('TestRGBSplit2Features1.mat');
-load('TestRGBSplit2Labels.mat');
 
-trainLabel = TrainRGBSplit2Labels;
-trainData = reshape(TrainRGBSplit2Features1,[],size(TrainRGBSplit2Features1,4));
-%trainData = TrainRGBSplit1Features4;
+load('TrainRGBSplit1Features1.mat');
+load('TrainRGBSplit1Labels.mat');
+load('TestRGBSplit1Features1.mat');
+load('TestRGBSplit1Labels.mat');
+
+trainLabel = TrainRGBSplit1Labels;
+trainData = reshape(TrainRGBSplit1Features1,[],size(TrainRGBSplit1Features1,4));
 trainData = trainData';
 fileCount = size(trainLabel,1);
 x = randperm(fileCount);
@@ -23,21 +20,8 @@ clear TrainRGBSplit1Features;
 disp(size(trainData));
 disp(size(trainLabel));
 
-%devLabel = DevRGBSplit1Labels;
-%devData = reshape(DevRGBSplit1Features1,[],size(DevRGBSplit1Features1,4));
-%%devData = devData';
-%%fileCount = size(devLabel,1);
-%x = randperm(fileCount);
-%devLabel = devLabel(x,1);
-%devData = devData(x,:);
-%devData = sparse(devData);
-
-%disp(size(devData));
-%disp(size(devLabel));
-
-testLabel = TestRGBSplit2Labels;
-testData = reshape(TestRGBSplit2Features1,[],size(TestRGBSplit2Features1,4));
-%testData = TestRGBSplit1Features4;
+testLabel = TestRGBSplit1Labels;
+testData = reshape(TestRGBSplit1Features1,[],size(TestRGBSplit1Features1,4));
 testData = testData';
 fileCount = size(testLabel,1);
 x = randperm(fileCount);
@@ -64,15 +48,4 @@ for x=1:size(c,2)
    valacc = [valacc; valacc1];
 end
 
-[best, val] = max(valacc);
-rp = 2^(c(val));
-tic;
-model = train(trainLabel1, trainData1, ['-q -c ',num2str(rp)]);
-disp(toc);
-[predictedlabels,accuracy, prob]  = predict(testLabel,testData, model);
-disp(c(val));
-disp('Testing accuracy: ');
-disp(accuracy);
-[predictedlabels,accuracy, prob]  = predict(trainLabel1,trainData1, model);
-disp('Training accuracy: ');
-disp(accuracy);
+

@@ -56,15 +56,4 @@ for x=1:size(c,2)
    valacc = [valacc; valacc1];
 end
 
-[best, val] = max(valacc);
-rp = 2^(c(val));
-tic;
-model = train(trainLabel1, trainData1, ['-q -c ',num2str(rp)]);
-disp(toc);
-[predictedlabels,accuracy, prob]  = predict(testLabel,testData, model);
-disp(c(val));
-disp('Testing accuracy: ');
-disp(accuracy);
-[predictedlabels,accuracy, prob]  = predict(trainLabel1,trainData1, model);
-disp('Training accuracy: ');
-disp(accuracy);
+

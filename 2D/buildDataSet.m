@@ -9,7 +9,7 @@ fileCounterTrain = 1;
 label = 0;
 
 load splits.mat; %this file defines the splits
-foldnum = 2; %split number
+foldnum = 1; %split number
 
 for x = 3:size(subfolder,1)
     subfolderpath = strcat(path,subfolder(x).name);
@@ -30,12 +30,12 @@ for x = 3:size(subfolder,1)
 		    ex1 = imresize(im,[dimPad1 dimPad2]);
             
             if(flag)
-                 TestRGBSplit2(:,:,1:3,fileCounterTest) = ex1;
-                 TestRGBSplit2Labels(fileCounterTest) = label;
+                 TestRGBSplit1(:,:,1:3,fileCounterTest) = ex1;
+                 TestRGBSplit1Labels(fileCounterTest) = label;
                  fileCounterTest = fileCounterTest+1;
             else
-                TrainRGBSplit2(:,:,1:3,fileCounterTrain) = ex1;	
-                TrainRGBSplit2Labels(fileCounterTrain) = label;
+                TrainRGBSplit1(:,:,1:3,fileCounterTrain) = ex1;
+                TrainRGBSplit1Labels(fileCounterTrain) = label;
                 fileCounterTrain = fileCounterTrain+1;
             end
         end
@@ -47,18 +47,18 @@ for x = 3:size(subfolder,1)
 end
 
 
-TrainRGBSplit2Labels = TrainRGBSplit2Labels';
-TrainRGBSplit2LabelsMat = full(sparse(TrainRGBSplit2Labels+1,1:fileCounterTrain-1,1,51,fileCounterTrain-1));
+TrainRGBSplit1Labels = TrainRGBSplit1Labels';
+TrainRGBSplit1LabelsMat = full(sparse(TrainRGBSplit1Labels+1,1:fileCounterTrain-1,1,51,fileCounterTrain-1));
 
-save('TrainRGBSplit2.mat','TrainRGBSplit2','-v7.3');
-save('TrainRGBSplit2Labels.mat','TrainRGBSplit2Labels','-v7.3');
-save('TrainRGBSplit2LabelsMat.mat','TrainRGBSplit2LabelsMat');
+save('TrainRGBSplit1.mat','TrainRGBSplit1','-v7.3');
+save('TrainRGBSplit1Labels.mat','TrainRGBSplit1Labels','-v7.3');
+save('TrainRGBSplit1LabelsMat.mat','TrainRGBSplit1LabelsMat');
 disp(fileCounterTrain)
 
-TestRGBSplit2Labels = TestRGBSplit2Labels';
-TestRGBSplit2LabelsMat = full(sparse(TestRGBSplit2Labels+1,1:fileCounterTest-1,1,51,fileCounterTest-1));
+TestRGBSplit1Labels = TestRGBSplit1Labels';
+TestRGBSplit1LabelsMat = full(sparse(TestRGBSplit1Labels+1,1:fileCounterTest-1,1,51,fileCounterTest-1));
 
-save('TestRGBSplit2.mat','TestRGBSplit2','-v7.3');
-save('TestRGBSplit2Labels.mat','TestRGBSplit2Labels','-v7.3');
-save('TestRGBSplit2LabelsMat.mat','TestRGBSplit2LabelsMat');
+save('TestRGBSplit1.mat','TestRGBSplit1','-v7.3');
+save('TestRGBSplit1Labels.mat','TestRGBSplit1Labels','-v7.3');
+save('TestRGBSplit1LabelsMat.mat','TestRGBSplit1LabelsMat');
 disp(fileCounterTest)

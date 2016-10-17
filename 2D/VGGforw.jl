@@ -92,13 +92,13 @@ function Knettest(args=ARGS)
     for (k,v) in opts; @eval ($(symbol(k))=$v); end
     seed > 0 && setseed(seed)
 	
-	xtrnFile = matopen("TrainRGBSplit2.mat")
-	xtrn = read(xtrnFile,"TrainRGBSplit2")
+	xtrnFile = matopen("TrainRGBSplit1.mat")
+	xtrn = read(xtrnFile,"TrainRGBSplit1")
     xtrn = map(Float32,xtrn)
-	println("Loading xtrn")
+	println(size(xtrn))
 
-	xtstFile = matopen("TestRGBSplit2.mat")
-	xtst = read(xtstFile,"TestRGBSplit2")
+	xtstFile = matopen("TestRGBSplit1.mat")
+	xtst = read(xtstFile,"TestRGBSplit1")
     xtst = map(Float32,xtst)
 	println(size(xtst))
     
@@ -107,12 +107,12 @@ function Knettest(args=ARGS)
     #xdev = map(Float32,xdev)
 	#println(size(xdev))
 	
-	ytrnFile = matopen("TrainRGBSplit2LabelsMat.mat")
-	ytrn = read(ytrnFile,"TrainRGBSplit2LabelsMat")
+	ytrnFile = matopen("TrainRGBSplit1LabelsMat.mat")
+	ytrn = read(ytrnFile,"TrainRGBSplit1LabelsMat")
     ytrn = map(Float32,ytrn)
 	
-	ytstFile = matopen("TestRGBSplit2LabelsMat.mat")
-	ytst = read(ytstFile,"TestRGBSplit2LabelsMat")
+	ytstFile = matopen("TestRGBSplit1LabelsMat.mat")
+	ytst = read(ytstFile,"TestRGBSplit1LabelsMat")
     ytst = map(Float32,ytst)
 	
 	#ydevFile = matopen("DevRGBSplit1LabelsMat.mat")
@@ -165,8 +165,8 @@ function Knettest(args=ARGS)
 	
 	xtrnFeatures = xtrnFeatures[:,:,:,1:xtrnsize]
 	
-	filetrn = matopen("TrainRGBSplit2Features1.mat", "w")
-	write(filetrn, "TrainRGBSplit2Features1", xtrnFeatures)
+	filetrn = matopen("TrainRGBSplit1Features1.mat", "w")
+	write(filetrn, "TrainRGBSplit1Features1", xtrnFeatures)
 	close(filetrn)
 	
 	xtrnFeatures = 0;
@@ -194,8 +194,8 @@ function Knettest(args=ARGS)
 	
 	println(size(xtstFeatures))
 	println(size(xtrnFeatures))
-	filetst = matopen("TestRGBSplit2Features1.mat", "w")
-	write(filetst, "TestRGBSplit2Features1", xtstFeatures)
+	filetst = matopen("TestRGBSplit1Features1.mat", "w")
+	write(filetst, "TestRGBSplit1Features1", xtstFeatures)
 	close(filetst)
 	
 	#xdevZeroPad = zeros(size(xdev,1),size(xdev,2),size(xdev,3),7040)
