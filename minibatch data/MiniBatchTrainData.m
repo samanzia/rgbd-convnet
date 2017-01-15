@@ -1,4 +1,4 @@
-load TrainRGBSplit1.mat
+load TrainRGBSplit1Reshaped.mat
 load TrainRGBSplit1LabelsMat.mat
 
 %^^ shuffle the ones for which you will be training, rather than just
@@ -26,7 +26,7 @@ for i=1:batchSize:fileCount
     end
     
     fileName = (strcat(strcat('TrainRGBSplit1Batch',num2str(batchCounter)),'.mat'));
-    save(fileName, 'trainData', 'labels');
+    save(fileName, 'trainData', 'labels', '-v7.3');
     
     batchCounter = batchCounter+1;
 end
